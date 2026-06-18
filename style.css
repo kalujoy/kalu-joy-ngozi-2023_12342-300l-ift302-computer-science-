@@ -1,0 +1,206 @@
+ /* Custom Properties & Dark/Light Theme Variables */
+:root {
+    --primary-gradient: linear-gradient(135deg, #FF006E, #8338EC, #3A86FF);
+    --bg-color: #f0f4f8;
+    --text-main: #1e293b;
+    --text-muted: #64748b;
+    --card-bg: rgba(255, 255, 255, 0.7);
+    --nav-bg: rgba(255, 255, 255, 0.85);
+    --glass-border: 1px solid rgba(255, 255, 255, 0.5);
+    --shadow: 0 8px 32px rgba(31, 38, 135, 0.1);
+    --btn-bg: #1e293b;
+    --btn-text: #ffffff;
+}
+
+[data-theme="dark"] {
+    --bg-color: #0f172a;
+    --text-main: #f8fafc;
+    --text-muted: #cbd5e1;
+    --card-bg: rgba(30, 41, 59, 0.7);
+    --nav-bg: rgba(15, 23, 42, 0.85);
+    --glass-border: 1px solid rgba(255, 255, 255, 0.1);
+    --shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+    --btn-bg: #f8fafc;
+    --btn-text: #0f172a;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+    transition: background-color 0.4s ease, color 0.4s ease;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-main);
+    overflow-x: hidden;
+}
+
+/* Moving Mesh Background */
+.bg-animation {
+    position: fixed;
+    top: 0; left: 0; width: 100vw; height: 100vh;
+    background: var(--primary-gradient);
+    background-size: 400% 400%;
+    animation: gradientBG 15s ease infinite;
+    opacity: 0.08; /* Subtle colorful background tint */
+    z-index: -1;
+    pointer-events: none;
+}
+
+@keyframes gradientBG {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* Glassmorphism Navigation */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 5%;
+    background: var(--nav-bg);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: var(--glass-border);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.logo {
+    font-size: 1.8rem;
+    font-weight: 800;
+    letter-spacing: 1px;
+}
+.accent { color: #FF006E; }
+.gradient-text {
+    background: var(--primary-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+}
+.nav-links a {
+    text-decoration: none;
+    color: var(--text-main);
+    font-weight: 600;
+    transition: 0.3s;
+}
+.nav-links a:hover { color: #FF006E; }
+
+.theme-btn {
+    background: var(--card-bg);
+    border: var(--glass-border);
+    color: var(--text-main);
+    padding: 8px 15px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-weight: 600;
+    box-shadow: var(--shadow);
+}
+.theme-btn:hover { background: var(--text-main); color: var(--bg-color); }
+
+/* Hero Section */
+.hero {
+    text-align: center;
+    padding: 6rem 2rem;
+}
+.badge {
+    background: rgba(255, 0, 110, 0.1);
+    color: #FF006E;
+    padding: 5px 15px;
+    border-radius: 50px;
+    font-size: 0.9rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    display: inline-block;
+    margin-bottom: 1.5rem;
+}
+.hero h1 { font-size: 3.8rem; font-weight: 800; margin-bottom: 1rem; }
+.hero p { font-size: 1.2rem; color: var(--text-muted); margin-bottom: 3rem; }
+
+/* Search & Filters */
+.search-container input {
+    width: 100%; max-width: 650px;
+    padding: 18px 30px; font-size: 1.1rem;
+    background: var(--card-bg); border: var(--glass-border);
+    color: var(--text-main); border-radius: 50px;
+    outline: none; box-shadow: var(--shadow);
+    backdrop-filter: blur(5px); transition: 0.3s;
+}
+.search-container input:focus { transform: scale(1.02); }
+
+.filter-container { margin-top: 2rem; display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; }
+.filter-btn {
+    padding: 10px 20px; border: var(--glass-border); background: var(--card-bg);
+    color: var(--text-main); border-radius: 30px; cursor: pointer; font-weight: 600; transition: 0.3s;
+}
+.filter-btn.active, .filter-btn:hover { background: var(--primary-gradient); color: white; border-color: transparent; }
+
+/* Library Grid - Glassmorphism Cards */
+.library-section { padding: 4rem 5%; max-width: 1400px; margin: 0 auto; }
+.book-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 2.5rem; }
+
+.book-card {
+    background: var(--card-bg); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+    border: var(--glass-border); border-radius: 24px; overflow: hidden;
+    box-shadow: var(--shadow); display: flex; flex-direction: column;
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+.book-card:hover { transform: translateY(-12px); box-shadow: 0 20px 40px rgba(0,0,0,0.15); }
+
+.book-cover { height: 180px; display: flex; justify-content: center; align-items: center; position: relative; }
+.book-icon { font-size: 4.5rem; filter: drop-shadow(0 5px 15px rgba(0,0,0,0.3)); }
+
+.category-tag {
+    position: absolute; top: 15px; left: 15px; background: rgba(255,255,255,0.9);
+    color: #1e293b; font-size: 0.75rem; font-weight: 800; text-transform: uppercase;
+    padding: 5px 12px; border-radius: 20px; box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+/* Beautiful Gradients for Covers */
+.cover-1 { background: linear-gradient(135deg, #ff0844 0%, #ffb199 100%); }
+.cover-2 { background: linear-gradient(135deg, #0acffe 0%, #495aff 100%); }
+.cover-3 { background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%); }
+.cover-4 { background: linear-gradient(135deg, #fa709a 0%, #fee140 100%); }
+.cover-5 { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); }
+.cover-6 { background: linear-gradient(135deg, #ff00cc 0%, #333399 100%); }
+.cover-7 { background: linear-gradient(135deg, #f83600 0%, #f9d423 100%); }
+.cover-8 { background: linear-gradient(135deg, #16a085 0%, #f4d03f 100%); }
+.cover-9 { background: linear-gradient(135deg, #d4fc79 0%, #96e6a1 100%); }
+
+.book-info { padding: 2rem; display: flex; flex-direction: column; flex-grow: 1; position: relative; }
+.book-title { font-size: 1.3rem; font-weight: 800; margin-bottom: 0.5rem; }
+.book-description { font-size: 0.95rem; color: var(--text-muted); margin-bottom: 2rem; flex-grow: 1; }
+
+.download-btn {
+    text-align: center; text-decoration: none; padding: 14px;
+    background: var(--btn-bg); color: var(--btn-text);
+    border-radius: 12px; font-weight: 600; text-transform: uppercase; font-size: 0.9rem;
+    letter-spacing: 1px; transition: transform 0.2s, background 0.3s;
+}
+.download-btn:hover { transform: scale(1.03); background: var(--primary-gradient); color: white; }
+
+/* Toast Notification */
+.toast {
+    visibility: hidden; min-width: 250px; background: #FF006E; color: #fff;
+    text-align: center; border-radius: 50px; padding: 16px; position: fixed;
+    z-index: 1000; left: 50%; bottom: 30px; font-weight: 600; box-shadow: 0 10px 30px rgba(255,0,110,0.4);
+    transform: translateX(-50%) translateY(20px); opacity: 0; transition: opacity 0.5s, transform 0.5s;
+}
+.toast.show { visibility: visible; opacity: 1; transform: translateX(-50%) translateY(0); }
+
+.no-results { display: none; text-align: center; font-size: 1.3rem; font-weight: 600; margin-top: 3rem; opacity: 0.7; }
+
+/* Footer */
+footer { background: var(--nav-bg); backdrop-filter: blur(10px); border-top: var(--glass-border); padding: 4rem 2rem; text-align: center; margin-top: 4rem; }
